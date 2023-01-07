@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        code {
+            background-color: #343a40 !important;
+            color: azure;
+            display: inline-block;
+            padding: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 5px;
+        }
+
+        button {
+            margin: 2px
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-clear">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="starrem_logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                Starrem2k13
+            </a>
+            <div class="me-auto"> &nbsp;</div>
+
+            <span class="nav-item">
+                <a class="nav-link " style="padding-right: 20px;" href="/#gettingstarted">Getting Started</a>
+            </span>
+            <span class="nav-item">
+                <a class="nav-link " style="padding-right: 20px;" href="/#faq">FAQ</a>
+            </span>
+            <span class="nav-item"> <a href="https://code2k13.github.com/starrem2k13" class="nav-link">
+                    <span class=" ri-github-fill  fs-1"></span></a> </span>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <div class="p-1 mb-1 bg-light rounded-3">
+            <div class="container-fluid py-1 text-center">
+
+                <p class="col-md-12 fs-4">
+                    <img src="starrem_term.jpeg" style="width:100%;max-width:720px" /><br />
+
+                    A simple and easy tool for removing stars from deep sky images. Starrem2k13 is open source.
+                    <br />
+                    <button class="btn   btn-outline-secondary btn-sm" type="button">Try Online Demo <i
+                            class="ri-window-line"></i></button>
+                    <button class="btn   btn-outline-secondary btn-sm" type="button">Run with Docker </button>
+
+                    <button class="btn  btn-outline-secondary btn-sm" type="button">Download for Windows <i
+                            class="ri-windows-line"></i></button>
+                    <button class="btn  btn-outline-secondary btn-sm" type="button"> Download for Ubuntu 20/Linux <i
+                            class="ri-ubuntu-line"></i></button>
+                    <button class="btn  btn-outline-secondary btn-sm" type="button"> Download for MacOS <i
+                            class="ri-apple-line"></i></button>
+
+
+                </p>
+            </div>
+
+
+        </div>
+        <div class="container-fluid py-1 text-center">
+
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Lxq8kiVnL9k"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+        </div>
+
+
+        <h3 id="gettingstarted">Getting Started</h3>
+        <div>
+
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Installing on Windows
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Simply unzip the downloaded zip archive and run the below command in command prompt:
+                            <br />
+                            <code lang="javascript">
+                            starrem2k13 image_with_stars.jpg starless.jpg
+                        </code>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Installing on Ubuntu 20.04 (and other Linux systems)
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Execute the following commands:
+                            <br />
+                            <code>
+                                tar -xvzf starrem2k13_ubuntu_20.04.tar.gz <br/>
+                                cd starrem2k13_ubuntu_20.04<br/>
+                                chmod +777 starrem2k13<br/>
+                                starrem2k13 image_with_stars.jpg starless.jpg<br/>
+                            </code>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Installation and running on MacOS
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Unzip all the contents of the downloaded archive to a folder. Open Terminal, navigate to the
+                            folder and
+                            type the following command: <br />
+                            <code>
+                                starrem2k13 image_with_stars.jpg starless.jpg
+                            </code>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Running using Docker (works with all operating systems)
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Make sure you have docker installed and then execute : <br />
+                            <code>
+                                docker run   -v $PWD:/usr/src/app/starrem2k13/data  \ <br/>
+-it code2k13/starrem2k13 \ <br/>
+/bin/bash -c "./starrem2k13.py ./data/example.jpg  ./data/example_starless.jpg" <br/>
+                            </code>
+
+                            <div>
+                                Note that $PWD refers to your current working directory. In the above example it is
+                                assumed that the file example.jpg resides in your current working directory. This
+                                directory is mounted as a volume with the path /usr/src/app/starreduction/data inside
+                                the docker container. The output image example_starless.jpg will also be written to same
+                                directory.
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <h3 id="faq">FAQ</h3>
+
+
+        <h4>Where can I find source code for this tool?</h4>
+
+        <h4>Can I train my own model and use with this tool?</h4>
+
+
+        <h4>I need help?</h4>
+
+        <h4>I think I found a bug or issue with the code ?</h4>
+
+
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
