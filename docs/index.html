@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Starrem2k13: Open source star removal tool</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="starrem.ico">
 
     <style>
         code {
@@ -50,21 +51,22 @@
         <div class="p-1 mb-1 bg-light rounded-3">
             <div class="container-fluid py-1 text-center">
 
-                <p class="col-md-12 fs-4">
-                    <img src="starrem_term.jpeg" style="width:100%;max-width:720px" /><br />
+                <p class="col-md-12 fs-4">                  
+                    
+                    <img src="star2k13_video.gif" style="width:100%;max-width: 360px;" /> <br/>
 
                     Starrem2k13, a simple, easy tool and open source for removing stars from deep sky images.
                     <br />
-                    <button class="btn   btn-outline-secondary btn-sm" type="button">Try Online Demo <i
-                            class="ri-window-line"></i></button>
-                    <button class="btn   btn-outline-secondary btn-sm" type="button">Run with Docker </button>
+                    <a class="btn   btn-outline-secondary btn-sm" type="button" href="https://ashishware.com/static/star_removal/index.html">Try Online Demo <i
+                            class="ri-window-line"></i></a>
+                    <a class="btn   btn-outline-secondary btn-sm" type="button" href="https://github.com/code2k13/starrem2k13#running-using-docker-recommended">Run with Docker </a>
 
-                    <button class="btn  btn-outline-secondary btn-sm" type="button">Download for Windows <i
-                            class="ri-windows-line"></i></button>
-                    <button class="btn  btn-outline-secondary btn-sm" type="button"> Download for Ubuntu 20/Linux <i
-                            class="ri-ubuntu-line"></i></button>
-                    <button class="btn  btn-outline-secondary btn-sm" type="button"> Download for MacOS <i
-                            class="ri-apple-line"></i></button>
+                    <a class="btn  btn-outline-secondary btn-sm" type="button" href="">Download for Windows <i
+                            class="ri-windows-line"></i></a>
+                    <a class="btn  btn-outline-secondary btn-sm" type="button" href="https://github.com/code2k13/starrem2k13/releases/download/v2.0_linux/starrem2k13_ubuntu_20.04.tar.gz"> Download for Ubuntu 20/Linux <i
+                            class="ri-ubuntu-line"></i></a>
+                    <a class="btn  btn-outline-secondary btn-sm" href="https://github.com/code2k13/starrem2k13/releases/download/v2.0_macos/starrem2k13_macos_12.tar.gz" type="button"> Download for MacOS <i
+                            class="ri-apple-line"></i></a>
 
 
                 </p>
@@ -72,12 +74,10 @@
 
 
         </div>
-        <div class="container-fluid py-1 text-center">
-            <img src="star2k13_video.gif" style="width:100%;max-width: 360px;" />
-        </div>
+    
 
 
-        <h3 id="gettingstarted">Getting Started</h3>
+        <h2 id="gettingstarted">Getting Started</h3>
         <div>
 
             <div class="accordion" id="accordionExample">
@@ -91,7 +91,7 @@
                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            Simply unzip the downloaded zip archive and run the below command in command prompt:
+                           Download the pre-built binaries for Windows <a href="https://github.com/code2k13/starrem2k13/releases/download/v2.1_win/starrem2k13_win.zip">here</a>. Simply unzip the downloaded zip archive and run the below command in command prompt:
                             <br />
                             <code lang="javascript">
                             starrem2k13 image_with_stars.jpg starless.jpg
@@ -110,7 +110,7 @@
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            Execute the following commands:
+                            Download the pre-built binaries for Linux <a href="https://github.com/code2k13/starrem2k13/releases/download/v2.0_linux/starrem2k13_ubuntu_20.04.tar.gz">here</a>.They have been tested with Ubuntu 20.04 and should work with other Linux distros. Execute the following commands:
                             <br />
                             <code>
                                 tar -xvzf starrem2k13_ubuntu_20.04.tar.gz <br/>
@@ -131,9 +131,8 @@
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            Unzip all the contents of the downloaded archive to a folder. Open Terminal, navigate to the
-                            folder and
-                            type the following command: <br />
+                            Download the pre-built binary for MacOS <a href="https://github.com/code2k13/starrem2k13/releases/download/v2.0_macos/starrem2k13_macos_12.tar.gz">here</a>. The executable should work with most versions of MacOS. Unzip all the contents of the downloaded archive to a folder. Open Terminal, navigate to the
+                            folder and type the following command: <br />
                             <code>
                                 starrem2k13 image_with_stars.jpg starless.jpg
                             </code>
@@ -176,17 +175,22 @@
             </div>
         </div>
 
-        <h3 id="faq">FAQ</h3>
+        <h2 id="faq" class="mt-4">FAQ</h2>
+
+        <p>
+        <span class="fw-bold">Where can I find source code for this tool?</span><br/>
+        The source code is available here : <a href="https://github.com/code2k13/starrem2k13">https://github.com/code2k13/starrem2k13</a> </p>
+
+        <p></p><span class="fw-bold">Can I train my own model and use with this tool?</span><br/>
+        Yes you can, please refer to this section : <a href="https://github.com/code2k13/starrem2k13#training-model-on-your-images">https://github.com/code2k13/starrem2k13#training-model-on-your-images</a></p>
 
 
-        <h4>Where can I find source code for this tool?</h4>
+        <p><span class="fw-bold">I need help? </span><br/>
+        You can reach out to me on Twitter <a href="https://twitter.com/patilsaheb">@patilsaheb</a></p>
 
-        <h4>Can I train my own model and use with this tool?</h4>
-
-
-        <h4>I need help?</h4>
-
-        <h4>I think I found a bug or issue with the code ?</h4>
+        <p><span class="fw-bold">Why is the startup of the program so slow ?</span><br/>
+        I use <a href="https://pyinstaller.org/en/stable/">PyInstaller</a> to create executables from my Python scripts. This tool basically creates a bundle with python, required dependencies, my scripts and
+        model weights. When it runs, it needs to unpackage everything , which takes time.</p>
 
 
 
