@@ -10,7 +10,6 @@ Starrem2k13 is a simple and easy tool to remove stars from astronomical images. 
 # Installing
 Currently binaries for Windows, Linux and MacOS are available in the releases section. These were created using PyInstaller. Using pre-complied binaries is the recommended way of running Starrem2k13. Once you have downloaded and installed the program you can run it simply by typing the following in command prompt/terminal
 
-Run inference on image. 
 ```shell
 starrem2k13 image_with_stars.jpg  image_without_stars.jpg
 ```
