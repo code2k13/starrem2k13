@@ -10,6 +10,12 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="starrem.ico">
 
+
+    <meta property="og:image" content="starrem2k13_og.jpg">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+
     <style>
         code {
             background-color: #343a40 !important;
@@ -51,22 +57,27 @@
         <div class="p-1 mb-1 bg-light rounded-3">
             <div class="container-fluid py-1 text-center">
 
-                <p class="col-md-12 fs-4">                  
-                    
-                    <img src="star2k13_video.gif" style="width:100%;max-width: 360px;" /> <br/>
+                <p class="col-md-12 fs-4">
+
+                    <img src="star2k13_video.gif" style="width:100%;max-width: 360px;" /> <br />
 
                     Starrem2k13, a simple, easy tool and open source for removing stars from deep sky images.
                     <br />
-                    <a class="btn   btn-outline-secondary btn-sm" type="button" href="https://ashishware.com/static/star_removal/index.html">Try Online Demo <i
+                    <a class="btn   btn-outline-secondary btn-sm" type="button"
+                        href="https://ashishware.com/static/star_removal/index.html">Try Online Demo <i
                             class="ri-window-line"></i></a>
-                    <a class="btn   btn-outline-secondary btn-sm" type="button" href="https://github.com/code2k13/starrem2k13#running-using-docker-recommended">Run with Docker </a>
+                    <a class="btn   btn-outline-secondary btn-sm" type="button"
+                        href="https://github.com/code2k13/starrem2k13#running-using-docker-recommended">Run with Docker
+                    </a>
 
                     <a class="btn  btn-outline-secondary btn-sm" type="button" href="">Download for Windows <i
                             class="ri-windows-line"></i></a>
-                    <a class="btn  btn-outline-secondary btn-sm" type="button" href="https://github.com/code2k13/starrem2k13/releases/download/v2.0_linux/starrem2k13_ubuntu_20.04.tar.gz"> Download for Ubuntu 20/Linux <i
-                            class="ri-ubuntu-line"></i></a>
-                    <a class="btn  btn-outline-secondary btn-sm" href="https://github.com/code2k13/starrem2k13/releases/download/v2.0_macos/starrem2k13_macos_12.tar.gz" type="button"> Download for MacOS <i
-                            class="ri-apple-line"></i></a>
+                    <a class="btn  btn-outline-secondary btn-sm" type="button"
+                        href="https://github.com/code2k13/starrem2k13/releases/download/v2.0_linux/starrem2k13_ubuntu_20.04.tar.gz">
+                        Download for Ubuntu 20/Linux <i class="ri-ubuntu-line"></i></a>
+                    <a class="btn  btn-outline-secondary btn-sm"
+                        href="https://github.com/code2k13/starrem2k13/releases/download/v2.0_macos/starrem2k13_macos_12.tar.gz"
+                        type="button"> Download for MacOS <i class="ri-apple-line"></i></a>
 
 
                 </p>
@@ -74,123 +85,138 @@
 
 
         </div>
-    
+
 
 
         <h2 id="gettingstarted">Getting Started</h3>
-        <div>
+            <div>
 
-            <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Installing on Windows
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                           Download the pre-built binaries for Windows <a href="https://github.com/code2k13/starrem2k13/releases/download/v2.1_win/starrem2k13_win.zip">here</a>. Simply unzip the downloaded zip archive and run the below command in command prompt:
-                            <br />
-                            <code lang="javascript">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Installing on Windows
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Download the pre-built binaries for Windows <a
+                                    href="https://github.com/code2k13/starrem2k13/releases/download/v2.1_win/starrem2k13_win.zip">here</a>.
+                                Simply unzip the downloaded zip archive and run the below command in command prompt:
+                                <br />
+                                <code lang="javascript">
                             starrem2k13 image_with_stars.jpg starless.jpg
                         </code>
 
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Installing on Ubuntu 20.04 (and other Linux systems)
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            Download the pre-built binaries for Linux <a href="https://github.com/code2k13/starrem2k13/releases/download/v2.0_linux/starrem2k13_ubuntu_20.04.tar.gz">here</a>.They have been tested with Ubuntu 20.04 and should work with other Linux distros. Execute the following commands:
-                            <br />
-                            <code>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Installing on Ubuntu 20.04 (and other Linux systems)
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Download the pre-built binaries for Linux <a
+                                    href="https://github.com/code2k13/starrem2k13/releases/download/v2.0_linux/starrem2k13_ubuntu_20.04.tar.gz">here</a>.They
+                                have been tested with Ubuntu 20.04 and should work with other Linux distros. Execute the
+                                following commands:
+                                <br />
+                                <code>
                                 tar -xvzf starrem2k13_ubuntu_20.04.tar.gz <br/>
                                 cd starrem2k13_ubuntu_20.04<br/>
                                 chmod +777 starrem2k13<br/>
                                 starrem2k13 image_with_stars.jpg starless.jpg<br/>
                             </code>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Installation and running on MacOS
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            Download the pre-built binary for MacOS <a href="https://github.com/code2k13/starrem2k13/releases/download/v2.0_macos/starrem2k13_macos_12.tar.gz">here</a>. The executable should work with most versions of MacOS. Unzip all the contents of the downloaded archive to a folder. Open Terminal, navigate to the
-                            folder and type the following command: <br />
-                            <code>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Installation and running on MacOS
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Download the pre-built binary for MacOS <a
+                                    href="https://github.com/code2k13/starrem2k13/releases/download/v2.0_macos/starrem2k13_macos_12.tar.gz">here</a>.
+                                The executable should work with most versions of MacOS. Unzip all the contents of the
+                                downloaded archive to a folder. Open Terminal, navigate to the
+                                folder and type the following command: <br />
+                                <code>
                                 starrem2k13 image_with_stars.jpg starless.jpg
                             </code>
 
 
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFour">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            Running using Docker (works with all operating systems)
-                        </button>
-                    </h2>
-                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            Make sure you have docker installed and then execute : <br />
-                            <code>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Running using Docker (works with all operating systems)
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Make sure you have docker installed and then execute : <br />
+                                <code>
                                 docker run   -v $PWD:/usr/src/app/starrem2k13/data  \ <br/>
 -it code2k13/starrem2k13 \ <br/>
 /bin/bash -c "./starrem2k13.py ./data/example.jpg  ./data/example_starless.jpg" <br/>
                             </code>
 
-                            <div>
-                                Note that $PWD refers to your current working directory. In the above example it is
-                                assumed that the file example.jpg resides in your current working directory. This
-                                directory is mounted as a volume with the path /usr/src/app/starreduction/data inside
-                                the docker container. The output image example_starless.jpg will also be written to same
-                                directory.
+                                <div>
+                                    Note that $PWD refers to your current working directory. In the above example it is
+                                    assumed that the file example.jpg resides in your current working directory. This
+                                    directory is mounted as a volume with the path /usr/src/app/starreduction/data
+                                    inside
+                                    the docker container. The output image example_starless.jpg will also be written to
+                                    same
+                                    directory.
+                                </div>
+
+
                             </div>
-
-
                         </div>
                     </div>
+
                 </div>
-
             </div>
-        </div>
 
-        <h2 id="faq" class="mt-4">FAQ</h2>
+            <h2 id="faq" class="mt-4">FAQ</h2>
 
-        <p>
-        <span class="fw-bold">Where can I find source code for this tool?</span><br/>
-        The source code is available here : <a href="https://github.com/code2k13/starrem2k13">https://github.com/code2k13/starrem2k13</a> </p>
+            <p>
+                <span class="fw-bold">Where can I find source code for this tool?</span><br />
+                The source code is available here : <a
+                    href="https://github.com/code2k13/starrem2k13">https://github.com/code2k13/starrem2k13</a>
+            </p>
 
-        <p></p><span class="fw-bold">Can I train my own model and use with this tool?</span><br/>
-        Yes you can, please refer to this section : <a href="https://github.com/code2k13/starrem2k13#training-model-on-your-images">https://github.com/code2k13/starrem2k13#training-model-on-your-images</a></p>
+            <p></p><span class="fw-bold">Can I train my own model and use with this tool?</span><br />
+            Yes you can, please refer to this section : <a
+                href="https://github.com/code2k13/starrem2k13#training-model-on-your-images">https://github.com/code2k13/starrem2k13#training-model-on-your-images</a>
+            </p>
 
 
-        <p><span class="fw-bold">I need help? </span><br/>
-        You can reach out to me on Twitter <a href="https://twitter.com/patilsaheb">@patilsaheb</a></p>
+            <p><span class="fw-bold">I need help? </span><br />
+                You can reach out to me on Twitter <a href="https://twitter.com/patilsaheb">@patilsaheb</a></p>
 
-        <p><span class="fw-bold">Why is the startup of the program so slow ?</span><br/>
-        I use <a href="https://pyinstaller.org/en/stable/">PyInstaller</a> to create executables from my Python scripts. This tool basically creates a bundle with python, required dependencies, my scripts and
-        model weights. When it runs, it needs to unpackage everything , which takes time.</p>
+            <p><span class="fw-bold">Why is the startup of the program so slow ?</span><br />
+                I use <a href="https://pyinstaller.org/en/stable/">PyInstaller</a> to create executables from my Python
+                scripts. This tool basically creates a bundle with python, required dependencies, my scripts and
+                model weights. When it runs, it needs to unpackage everything , which takes time.</p>
 
 
 
