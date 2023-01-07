@@ -30,8 +30,8 @@ jobs:
       run: xcopy weights\* dist\weights\ /E
     - name: copy other files
       run: |
-           xcopy LICENSE dist\ /E
-           xcopy releasenotes.md dist\ /E
+           xcopy LICENSE dist
+           xcopy releasenotes.md dist
     - uses: thedoctor0/zip-release@main
       with:
         type: 'zip'
