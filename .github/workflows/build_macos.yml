@@ -24,7 +24,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Build binary
-      run: pyinstaller --onefile starrem2k13.py -i starrem.ico
+      run: pyinstaller --onefile starrem2k13.py --target-arch=universal2 -i starrem.ico
     - name: list files
       run: ls -alh dist/
     - name: create tar.gz
