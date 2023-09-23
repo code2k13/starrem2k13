@@ -40,6 +40,8 @@ cd starrem2k13
 sudo apt-get install git-lfs
 git lfs pull
 ```
+> 📍If you run into bandwidth issues with git-lfs, you can simply download weights [from here]( https://github.com/code2k13/starrem2k13/releases/download/v1.0_weights/weights.zip) and unzip to root directory (a folder with weights will
+> get created beside starrem2k13 executable. This folder contains weights required by the program).
 
 Run inference on image. 
 ```shell
