@@ -30,13 +30,13 @@ Note that *$PWD* refers to your current working directory. In the above example 
 Clone the repository and navigate to the 'starrem2k13' folder. Install required packages :
 
 ```shell
+git clone https://github.com/code2k13/starrem2k13.git
+cd starrem2k13
 pip install -r requirements.txt
 ```
 
 Additionally you may also have to install lfs support for git
-```
-git clone https://github.com/code2k13/starrem2k13.git
-cd starrem2k13
+```shell
 sudo apt-get install git-lfs
 git lfs pull
 ```
