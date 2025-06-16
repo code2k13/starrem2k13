@@ -1,7 +1,8 @@
+#tensorflow
 numpy
 pillow
 tqdm
 tensorflowjs
 pyinstaller
-tf2onnx
+#tf2onnx
 onnxruntime
