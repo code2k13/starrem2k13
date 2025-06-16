@@ -1,16 +1,11 @@
 #!/usr/bin/python3
 
-import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-import tensorflow as tf
-tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
-
-import model
 from PIL import Image
 import numpy as np
 import sys
 from tqdm import tqdm
 import math
+import onnxruntime as ort
 
 
 IMG_SIZE = 512
@@ -27,38 +22,46 @@ if len(args) != 3:
   print ('Argument List:', str(sys.argv)) 
   exit(1)
 
-def process_tile(channel,i,j,pad_width,model,output_image):
-  corp_rect = (i*IMG_SIZE,j*IMG_SIZE,i*IMG_SIZE+IMG_SIZE,j*IMG_SIZE+IMG_SIZE)
-  current_tile = channel.crop(corp_rect)
-  current_tile = current_tile.convert('L')
-  blank_image =  current_tile.copy()  
-  current_tile = current_tile.resize((IMG_SIZE-pad_width*2,IMG_SIZE-pad_width*2))
-  blank_image.paste(current_tile,(pad_width,pad_width))
-  blank_image = blank_image.resize((MODEL_SIZE,MODEL_SIZE))
-  blank_image  = np.asarray(blank_image,dtype="float32").reshape(1,MODEL_SIZE,MODEL_SIZE)/512
-  predicted_section = model.predict(blank_image,verbose=0)      
-  predicted_section = predicted_section.reshape(MODEL_SIZE,MODEL_SIZE)*512
-  predicted_section = Image.fromarray(predicted_section).convert('L')
-  predicted_section =  predicted_section.resize((IMG_SIZE,IMG_SIZE))            
-  predicted_section = predicted_section.crop((pad_width,pad_width,IMG_SIZE-pad_width,IMG_SIZE-pad_width))
-  predicted_section = predicted_section.resize((IMG_SIZE,IMG_SIZE))  
-  output_image.paste(predicted_section, (i*IMG_SIZE,j*IMG_SIZE),  mask=None)
+def process_tile(channel,i,j,pad_width,output_image):
+    corp_rect = (i * IMG_SIZE, j * IMG_SIZE, i * IMG_SIZE + IMG_SIZE, j * IMG_SIZE + IMG_SIZE)
+    current_tile = channel.crop(corp_rect).convert('L')
+    blank_image = current_tile.copy()
+
+    # Resize to remove padding, then paste into padded blank
+    current_tile = current_tile.resize((IMG_SIZE - pad_width * 2, IMG_SIZE - pad_width * 2))
+    blank_image.paste(current_tile, (pad_width, pad_width))
+
+    # Resize to match model input
+    blank_image = blank_image.resize((MODEL_SIZE, MODEL_SIZE))
+    input_array = np.asarray(blank_image, dtype="float32").reshape(1, MODEL_SIZE, MODEL_SIZE)
+    input_array = input_array /382  # Normalize same as training
+
+    # ONNX Inference
+    output_array = onnx_session.run(None, {input_name: input_array})[0]
+    output_array = output_array.reshape(MODEL_SIZE, MODEL_SIZE) * 382  # De-normalize
+
+    # Convert to image and paste
+    predicted_section = Image.fromarray(output_array.astype(np.uint8)).convert('L')
+    predicted_section = predicted_section.resize((IMG_SIZE, IMG_SIZE))
+    predicted_section = predicted_section.crop((pad_width, pad_width, IMG_SIZE - pad_width, IMG_SIZE - pad_width))
+    predicted_section = predicted_section.resize((IMG_SIZE, IMG_SIZE))
+
+    output_image.paste(predicted_section, (i * IMG_SIZE, j * IMG_SIZE), mask=None)
 
 def process_channel(channel,pad_width,input_image_size):    
     global progress_bar,step_size,current_progress
     output_image =  Image.new('L', input_image_size)
     for i in range(0,int(channel.size[0]/IMG_SIZE)):
         for j in range(0,int(channel.size[1]/IMG_SIZE)):                   
-            process_tile(channel,i,j,pad_width,G2,output_image)
+            process_tile(channel,i,j,pad_width,output_image)
             current_progress = current_progress + step_size
             if current_progress <= 100:
                 progress_bar.update(round(step_size,2))
     return output_image
 
 try:
-  G2 = model.Generator()
-  G2.load_weights("weights/weights")
-
+  onnx_session = ort.InferenceSession("weights/model.onnx", providers=["CPUExecutionProvider"])
+  input_name = onnx_session.get_inputs()[0].name
   source_image = Image.open(args[1])
   mode = source_image.mode
   size = source_image.size

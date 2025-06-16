@@ -1,72 +1,62 @@
-import tensorflow as tf 
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
 
-IMG_SIZE = 512
-OUTPUT_CHANNELS = 1
+def REBNCONV(x, filters, dilation_rate=1, name_prefix="rebn"):
+    x = layers.Conv2D(filters, 3, padding='same', dilation_rate=dilation_rate,
+                      kernel_initializer='he_normal', name=f"{name_prefix}_conv")(x)
+    x = layers.BatchNormalization(name=f"{name_prefix}_bn")(x)
+    x = layers.ReLU(name=f"{name_prefix}_relu")(x)
+    return x
 
-def downsample(filters, size, apply_batchnorm=True,strides = 2,name=''):
-  initializer = tf.random_normal_initializer(0., 0.02)
-  result = tf.keras.Sequential(name=name)
-  result.add(tf.keras.layers.Conv2D(filters, size, strides=strides, padding='same',kernel_initializer=initializer, use_bias=False))
+def RSU4(x_input, in_filters, mid_filters, out_filters, name_prefix="rsu4"):
+    hxin = REBNCONV(x_input, out_filters, name_prefix=f"{name_prefix}_in")
 
-  if apply_batchnorm:
-    result.add(tf.keras.layers.BatchNormalization())
+    hx1 = REBNCONV(hxin, mid_filters, name_prefix=f"{name_prefix}_conv1")
+    pool1 = layers.MaxPooling2D(pool_size=2)(hx1)
 
-  result.add(tf.keras.layers.LeakyReLU())
-  return result
+    hx2 = REBNCONV(pool1, mid_filters, name_prefix=f"{name_prefix}_conv2")
+    pool2 = layers.MaxPooling2D(pool_size=2)(hx2)
 
-def upsample(filters, size, apply_dropout=False,strides = 2,name=''):
-  initializer = tf.random_normal_initializer(0., 0.02)
-  result = tf.keras.Sequential(name=name)
-  result.add(tf.keras.layers.Conv2DTranspose(filters, size, strides=strides,padding='same',
-                                    kernel_initializer=initializer,use_bias=False))
+    hx3 = REBNCONV(pool2, mid_filters, name_prefix=f"{name_prefix}_conv3")
+    hx4 = REBNCONV(hx3, mid_filters, dilation_rate=2, name_prefix=f"{name_prefix}_conv4")
 
-  result.add(tf.keras.layers.BatchNormalization())
-  if apply_dropout:
-      result.add(tf.keras.layers.Dropout(0.5))        
-  result.add(tf.keras.layers.ReLU())
-  return result
+    hx3d = REBNCONV(layers.Concatenate()([hx4, hx3]), mid_filters, name_prefix=f"{name_prefix}_conv3d")
+    hx3d_up = layers.UpSampling2D(size=2, interpolation='bilinear')(hx3d)
 
-def Generator():
-  inputs = tf.keras.layers.Input(shape=[IMG_SIZE, IMG_SIZE, OUTPUT_CHANNELS])
+    hx2d = REBNCONV(layers.Concatenate()([hx3d_up, hx2]), mid_filters, name_prefix=f"{name_prefix}_conv2d")
+    hx2d_up = layers.UpSampling2D(size=2, interpolation='bilinear')(hx2d)
 
-  down_stack = [
-    downsample(16, 5, apply_batchnorm=False,strides = 1, name='gd_1'),  # (batch_size, 128, 128, 64)
-    downsample(32, 5,name='gd_2'),  # (batch_size, 64, 64, 128)
-    downsample(64, 5,name='gd_3'),  # (batch_size, 32, 32, 256)
-    downsample(128, 5,name='gd_4'),  # (batch_size, 16, 16, 512)
-    downsample(256, 5,name='gd_5'),  # (batch_size, 8, 8, 512)
-    downsample(256, 5,name='gd_6'),  # (batch_size, 4, 4, 512)
-    downsample(512, 5,name='gd_7'),  # (batch_size, 2, 2, 512)
-    downsample(512, 5,name='gd_8'),  # (batch_size, 1, 1, 512)
-  ]
+    hx1d = REBNCONV(layers.Concatenate()([hx2d_up, hx1]), out_filters, name_prefix=f"{name_prefix}_conv1d")
 
-  up_stack = [
-    upsample(512, 5, apply_dropout=True,name='gu_1'),  # (batch_size, 2, 2, 1024)
-    upsample(256, 5, apply_dropout=True,name='gu_2'),  # (batch_size, 4, 4, 1024)
-    upsample(256, 5, apply_dropout=True,name='gu_3'),  # (batch_size, 8, 8, 1024)      
-    upsample(128, 5,name='gu_4'),  # (batch_size, 16, 16, 1024)
-    upsample(64, 5,name='gu_5'),  # (batch_size, 32, 32, 512)
-    upsample(32, 5,name='gu_6'),  # (batch_size, 64, 64, 256)
-    upsample(16, 5,name='gu_7'),  # (batch_size, 128, 128, 128)
-  ]
+    return layers.Add(name=f"{name_prefix}_add")([hx1d, hxin])
 
-  initializer = tf.random_normal_initializer(0., 0.02)
-  last = tf.keras.layers.Conv2DTranspose(OUTPUT_CHANNELS, 4,strides=1,padding='same',
-                                         kernel_initializer=initializer,activation='relu')  # (batch_size, 256, 256, 3)
+def Generator(input_shape=(512, 512, 1)):
+    inputs = keras.Input(shape=input_shape)
 
-  x = inputs
-  # Downsampling through the model
-  skips = []
-  for down in down_stack:
-    x = down(x)
-    skips.append(x)
+    stage1 = RSU4(inputs, 1, 16, 64, name_prefix="stage1")
+    pool12 = layers.MaxPooling2D(pool_size=2)(stage1)
 
-  skips = reversed(skips[:-1])
+    stage2 = RSU4(pool12, 64, 16, 64, name_prefix="stage2")
+    pool23 = layers.MaxPooling2D(pool_size=2)(stage2)
 
-  for up, skip in zip(up_stack, skips):
-    x = up(x)
-    x = tf.keras.layers.Concatenate()([x, skip])
+    stage3 = RSU4(pool23, 64, 16, 64, name_prefix="stage3")
+    pool34 = layers.MaxPooling2D(pool_size=2)(stage3)
 
-  x = last(x)
+    stage4 = RSU4(pool34, 64, 16, 64, name_prefix="stage4")
 
-  return tf.keras.Model(inputs=inputs, outputs=x)
+    stage3d = RSU4(layers.Concatenate()([
+        layers.UpSampling2D(size=2, interpolation='bilinear')(stage4), stage3
+    ]), 128, 16, 64, name_prefix="stage3d")
+
+    stage2d = RSU4(layers.Concatenate()([
+        layers.UpSampling2D(size=2, interpolation='bilinear')(stage3d), stage2
+    ]), 128, 16, 64, name_prefix="stage2d")
+
+    stage1d = RSU4(layers.Concatenate()([
+        layers.UpSampling2D(size=2, interpolation='bilinear')(stage2d), stage1
+    ]), 128, 16, 64, name_prefix="stage1d")
+
+    output = layers.Conv2D(1, 1, padding='same', activation='sigmoid', name="final_output")(stage1d)
+
+    return keras.Model(inputs, output, name="U2NETP_Gray2Gray")

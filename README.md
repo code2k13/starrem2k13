@@ -1,6 +1,6 @@
 # Star reduction in deep sky images
 
-Starrem2k13 is a simple tool for removing stars from astronomical images. Starrem2k13 uses a GAN trained on augmented data. It's code was inspired from a [sample at Tensorflow's website](https://www.tensorflow.org/tutorials/generative/pix2pix). The training data consists of only three base images.
+Starrem2k13 is a simple tool for removing stars from astronomical images. Starrem2k13 uses a U2NETP model trained on augmented data. The training data consists of only three base images.
 
 Below are examples of what it can do:
 
@@ -81,4 +81,11 @@ Url: [https://commons.wikimedia.org/wiki/File:The_star_cluster_NGC_3572_and_its_
 Direct Link: [https://upload.wikimedia.org/wikipedia/commons/9/95/The_star_cluster_NGC_3572_and_its_dramatic_surroundings.jpg](https://upload.wikimedia.org/wikipedia/commons/9/95/The_star_cluster_NGC_3572_and_its_dramatic_surroundings.jpg)
 
 
-
+@InProceedings{Qin_2020_PR,
+title = {U2-Net: Going Deeper with Nested U-Structure for Salient Object Detection},
+author = {Qin, Xuebin and Zhang, Zichen and Huang, Chenyang and Dehghan, Masood and Zaiane, Osmar and Jagersand, Martin},
+journal = {Pattern Recognition},
+volume = {106},
+pages = {107404},
+year = {2020}
+}
